@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name="TB_EMAIL")
@@ -15,18 +16,26 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class EmailModel {
 
-    private final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String emailId;
-    private String userId;
+    private UUID emailId;
+    private UUID userId;
     private String subject;
-    @Column(columnDefinition = "BODY")
+
+    @Column(columnDefinition = "TEXT")
     private String body;
+
+    @Column(name = "email_from")
     private String from;
+
+    @Column(name = "email_to")
     private String to;
+
     private LocalDateTime sentDateEmail;
+
+    @Enumerated(EnumType.STRING)
     private EmailStatus status;
 
 }

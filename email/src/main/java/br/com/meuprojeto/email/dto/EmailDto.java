@@ -4,7 +4,8 @@ import java.util.UUID;
 
 public record EmailDto (
 
-    UUID id,
+    UUID userId,
+    String to,
     String subject,
     String body
 
